@@ -131,5 +131,6 @@ class HD44780(object):
   # --- write data to the bus   ----------------------------------------------
 
   def _write_to_i2c(self,data):
-    self._device.write(bytes([data]))
+    with self._device:
+      self._device.write(bytes([data]))
     time.sleep(0.0001)
